@@ -1,0 +1,27 @@
+version: 3
+services:
+  rabbitmq:
+    image: rabbitmq:3.7.8-management-alpine
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=password
+      - RABBITMQ_ERLANG_COOKIE=
+  
+  sender:
+    image: tugrulelmas/queue-sender
+    depends_on:
+      - rabbitmq
+    environment:
+      -QueueHostName=rabbitmq
+
+  receiver:
+    image: tugrulelmas/queue-receiver
+    ports:
+      -"8080:80"
+    depends_on:
+      - rabbitmq
+    environment:
+      -QueueHostName=rabbitmq

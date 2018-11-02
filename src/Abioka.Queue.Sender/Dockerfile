@@ -15,5 +15,6 @@ RUN dotnet publish -c Release -o out
 
 FROM microsoft/dotnet:2.1-runtime
 WORKDIR /app
+ENV ASPNETCORE_URLS=http://+:80
 COPY --from=publish /app/Abioka.Queue.Sender/out ./
 ENTRYPOINT ["dotnet", "Abioka.Queue.Sender.dll"]
