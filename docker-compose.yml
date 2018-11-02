@@ -4,13 +4,13 @@ services:
     image: tugrulelmas/queue-sender
     ports:
       - "8080:80"
-    command: dotnet app/Abioka.Queue.Receiver.dll
     depends_on:
       - rabbitmq
     environment:
       - QueueHostName=rabbitmq:5672
   receiver:
     image: tugrulelmas/queue-receiver
+    command: dotnet app/Abioka.Queue.Receiver.dll
     depends_on:
       - rabbitmq
     environment:

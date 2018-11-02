@@ -16,4 +16,3 @@ RUN dotnet publish -c Release -o out
 FROM microsoft/dotnet:2.1.5-runtime-alpine
 WORKDIR /app
 COPY --from=publish /app/Abioka.Queue.Receiver/out ./
-ENTRYPOINT ["dotnet", "Abioka.Queue.Receiver.dll"]
