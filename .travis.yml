@@ -17,3 +17,12 @@ script:
   - docker build -f Abioka.Queue.Receiver/Dockerfile -t tugrulelmas/queue-receiver .
   - docker build -f Abioka.Queue.Sender/Dockerfile -t tugrulelmas/queue-sender:${BUILD_NUMBER} .
   - docker build -f Abioka.Queue.Sender/Dockerfile -t tugrulelmas/queue-sender .
+  
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push tugrulelmas/queue-receiver:${BUILD_NUMBER};
+    docker push tugrulelmas/queue-receiver;
+    docker push tugrulelmas/queue-sender:${BUILD_NUMBER};
+    docker push tugrulelmas/queue-sender;
+    fi
