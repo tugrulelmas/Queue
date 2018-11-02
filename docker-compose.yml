@@ -4,17 +4,17 @@ services:
     image: tugrulelmas/queue-sender
     ports:
       - "8080:80"
-    depends_on:
-      - rabbitmq
     environment:
       - QueueHostName=rabbitmq:5672
+    depends_on:
+      - rabbitmq
   receiver:
     image: tugrulelmas/queue-receiver
-    command: dotnet app/Abioka.Queue.Receiver.dll
-    depends_on:
-      - rabbitmq
     environment:
       - QueueHostName=rabbitmq:5672
+    restart: on-failure
+    depends_on:
+      - rabbitmq
   rabbitmq:
     image: rabbitmq:3.7.8-management-alpine
     ports:
@@ -25,3 +25,8 @@ services:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=password
       - RABBITMQ_ERLANG_COOKIE=abioka
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:15672"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
