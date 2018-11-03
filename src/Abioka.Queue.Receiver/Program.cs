@@ -29,7 +29,7 @@ namespace Abioka.Queue.Receiver
             return services
                 .AddOptions()
                 .AddSingleton<IConfiguration>(configuration)
-                .AddSingleton<IQueueConnection>(x => new QueueConnection(x.GetService<IConfiguration>()))
+                .AddSingleton<IQueueConnection, QueueConnection>()
                 .AddSingleton<ISender, Sender>()
                 .AddSingleton<IExceptionSender, ExceptionSender>()
                 .AddSingleton<IDuplicateSender, DuplicateSender>()
