@@ -22,6 +22,7 @@ namespace Abioka.Queue.Common
             Connection = factory.CreateConnection();
             using (var model = Connection.CreateModel()) {
                 DeclareExcnhageAndQueues(model);
+                Console.WriteLine("success");
             }
         }
 
