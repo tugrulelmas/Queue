@@ -11,7 +11,7 @@ namespace Abioka.Queue.Receiver
     internal class Program
     {
         private static void Main(string[] args) {
-            Thread.Sleep(10000);
+            Thread.Sleep(40000);
 
             var serviceProvider = RegisterServices(args);
 
