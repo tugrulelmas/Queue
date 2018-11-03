@@ -8,6 +8,7 @@ namespace Abioka.Queue.Common
     {
         public QueueConnection(IConfiguration configuration) {
             var hostName = configuration.GetValue<string>("QueueHostName");
+            Console.WriteLine($"HostName: {hostName}");
             var hostNameAndPort = hostName.Split(':');
             var factory = new ConnectionFactory() {
                 HostName = hostNameAndPort[0],
