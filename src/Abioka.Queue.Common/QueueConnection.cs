@@ -8,7 +8,6 @@ namespace Abioka.Queue.Common
     {
         public QueueConnection(IConfiguration configuration) {
             var hostName = configuration.GetValue<string>("QueueHostName");
-            Console.WriteLine($"HostName: {hostName}");
             var hostNameAndPort = hostName.Split(':');
             var factory = new ConnectionFactory() {
                 HostName = hostNameAndPort[0],
@@ -16,6 +15,9 @@ namespace Abioka.Queue.Common
                 UserName = configuration.GetValue<string>("QueueUserName"),
                 Password = configuration.GetValue<string>("QueuePassword"),
             };
+            Console.WriteLine($"HostName: {hostName}");
+            Console.WriteLine($"QueueUserName: {factory.UserName}");
+            Console.WriteLine($"QueuePassword: {factory.Password}");
 
             Connection = factory.CreateConnection();
             using (var model = Connection.CreateModel()) {
