@@ -36,7 +36,7 @@ namespace Abioka.Queue.Receiver.Implementations
 
                 model.BasicConsume(queue: Consts.StatusQueue, autoAck: false, consumer: consumer);
 
-                Console.ReadLine();
+                while (true){}
             }
         }
     }
