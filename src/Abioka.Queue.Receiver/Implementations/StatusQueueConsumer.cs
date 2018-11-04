@@ -19,9 +19,7 @@ namespace Abioka.Queue.Receiver.Implementations
         }
 
         public void Consume() {
-            Console.WriteLine("before creating model");
             using (var model = queueConnection.Connection.CreateModel()) {
-                Console.WriteLine("after creating model");
                 var consumer = new EventingBasicConsumer(model);
                 model.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
 
