@@ -8,6 +8,8 @@ services:
       - QueueHostName=rabbitmq:5672
     depends_on:
       - rabbitmq
+    deploy:
+      replicas: 2
   receiver:
     image: tugrulelmas/queue-receiver
     environment:
@@ -17,6 +19,12 @@ services:
     restart: on-failure
     depends_on:
       - rabbitmq
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+        delay: 40s
+        max_attempts: 3
   rabbitmq:
     image: rabbitmq:3.7.8-management-alpine
     ports:
