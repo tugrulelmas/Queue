@@ -12,6 +12,8 @@ services:
     image: tugrulelmas/queue-receiver
     environment:
       - QueueHostName=rabbitmq:5672
+      - QueueUserName=admin
+      - QueuePassword=password
     restart: on-failure
     depends_on:
       - rabbitmq
