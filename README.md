@@ -4,7 +4,7 @@
 It's a basic repository which provides how you can publish and subscribe a message using RabbitMQ and Docker.
 
 ## Best Practises
-* Use single instance for RabbitMQ connection.
+* Use single instance of RabbitMQ connection.
 * Use [work queues](https://www.rabbitmq.com/tutorials/tutorial-two-dotnet.html) to distribute tasks among workers.
 * Set consumer `prefetchCount` as `1` to make RabbitMQ doesn't send a message to busy consumer instead of free one.
 * Set `autoAck` as `false` and send a proper acknowledgment from the worker to be able to reconsume a message in case of any exception.
