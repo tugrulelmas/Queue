@@ -7,6 +7,6 @@ namespace Abioka.Queue.Sender.Controllers
     public class EchoController : ControllerBase
     {
         [HttpGet()]
-        public ActionResult<string> Get() => Ok("Ok.");
+        public ActionResult<string> Get() => Ok("Ok");
     }
 }
