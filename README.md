@@ -24,6 +24,7 @@ docker-compose rm
 docker swarm init
 
 docker stack deploy --compose-file docker-compose.yml queuestack
+* If you have some problem with updating service you can use `--with-registry-auth` to solve the problem. Click [here](https://github.com/moby/moby/issues/34153) for more info. 
 
 docker stack rm queuestack
 
