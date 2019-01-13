@@ -1,5 +1,6 @@
 ﻿using Abioka.Queue.Common.Entities;
 using Abioka.Queue.Receiver.Abstractions;
+using System.Threading.Tasks;
 
 namespace Abioka.Queue.Receiver.Implementations
 {
@@ -13,14 +14,14 @@ namespace Abioka.Queue.Receiver.Implementations
             this.duplicateSender = duplicateSender;
         }
 
-        public void Consume(User user) {
+        public async Task ConsumeAsync(User user) {
             var isAlreadyConsumed = false; // TODO: implement real checker
             if (isAlreadyConsumed) {
                 duplicateSender.Send(user);
                 return;
             }
 
-            consumer.Consume(user);
+            await consumer.ConsumeAsync(user);
         }
     }
 }

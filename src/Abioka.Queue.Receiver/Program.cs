@@ -4,7 +4,6 @@ using Abioka.Queue.Receiver.Implementations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
-using System.Threading;
 
 namespace Abioka.Queue.Receiver
 {
@@ -30,7 +29,6 @@ namespace Abioka.Queue.Receiver
             return services
                 .AddOptions()
                 .AddSingleton<IConfiguration>(configuration)
-                .AddSingleton<IQueueConnection, QueueConnection>()
                 .AddSingleton<ISender, Sender>()
                 .AddSingleton<IExceptionSender, ExceptionSender>()
                 .AddSingleton<IDuplicateSender, DuplicateSender>()

@@ -1,5 +1,6 @@
 ﻿using Abioka.Queue.Common.Entities;
 using Abioka.Queue.Receiver.Abstractions;
+using System.Threading.Tasks;
 
 namespace Abioka.Queue.Receiver.Implementations
 {
@@ -13,8 +14,8 @@ namespace Abioka.Queue.Receiver.Implementations
             this.repeater = repeater;
         }
 
-        public void Consume(User user) {
-            repeater.Repeat(() => consumer.Consume(user), 3);
+        public async Task ConsumeAsync(User user) {
+            await repeater.RepeatAsync(async () => await consumer.ConsumeAsync(user), 3);
         }
     }
 }

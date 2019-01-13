@@ -1,6 +1,7 @@
 ﻿using Abioka.Queue.Receiver.Abstractions;
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Abioka.Queue.Receiver.Implementations
 {
@@ -12,12 +13,12 @@ namespace Abioka.Queue.Receiver.Implementations
             this.exceptionSender = exceptionSender;
         }
 
-        public void Repeat(Action action, int times) {
+        public async Task RepeatAsync(Func<Task> action, int times) {
             var tryCount = 0;
             while (true) {
                 try {
                     tryCount++;
-                    action();
+                    await action();
                     break;
                 } catch (Exception ex) {
                     if (tryCount == times + 1) {

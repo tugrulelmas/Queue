@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Abioka.Queue.Receiver.Abstractions
 {
@@ -9,6 +10,6 @@ namespace Abioka.Queue.Receiver.Abstractions
         /// </summary>
         /// <param name="action">The action.</param>
         /// <param name="times">The times.</param>
-        void Repeat(Action action, int times);
+        Task RepeatAsync(Func<Task> action, int times);
     }
 }
