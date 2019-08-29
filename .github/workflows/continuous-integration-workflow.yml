@@ -18,9 +18,9 @@ jobs:
     steps:
       - name: Docker Push
       - uses: docker://alpine:3.8
-      env:
+        env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run: |
+        run: |
           docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
     needs: build
