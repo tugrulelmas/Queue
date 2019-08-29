@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: 
-        - cd src
-        - docker build -f Abioka.Queue.Receiver/Dockerfile -t tugrulelmas/queue-receiver:$GITHUB_SHA .
+      - run: |
+          cd src
+          docker build -f Abioka.Queue.Receiver/Dockerfile -t tugrulelmas/queue-receiver:$GITHUB_SHA .
