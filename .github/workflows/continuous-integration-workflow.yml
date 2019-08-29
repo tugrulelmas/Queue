@@ -16,8 +16,8 @@ jobs:
   push:
     runs-on: ubuntu-latest
     steps:
-      - name: Docker Push
       - uses: docker://alpine:3.8
+      - name: Docker Push
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
